@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Image Gallery</title>
+    <style>
+        .gallery img {
+            display: none;
+        }
+        .gallery img:first-child {
+            display: block;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="gallery">
+        <img src="imges/imag1.jpg" alt="Image 1">
+        <img src="imges/image2.jpg" alt="Image 2">
+        <img src="imges/imgae3.jpg" alt="Image 3">
+    </div>
+    <button id="prev-button">Previous</button>
+    <button id="next-button">Next</button>
+    
+    <script>
+        (function(){
+            let current=0;
+            const imgs=$('.gallery img');
+            const imgesNum= imgs.length; // how many images we have 
+
+            function showImges(index){
+                imgs.hide().eq(index).show();
+            }
+            $('#next-button').on('click', function(){
+                current=(current+1)%imgesNum; // 0 + 1 = 1 % 4 = 1 so it show the picture with index 1 
+                showImges(current);
+            })
+            $('#prev-button').on('click',function(){
+                current=(current-1+imgesNum) %imgesNum; // here i add the imges num to the current to avoid negtive indexes
+                showImges(current);
+            })
+        })()
+    </script>
+</body>
+</html>

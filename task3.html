@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="task-input" placeholder="Add a new task">
+    <button id="add-button">Add</button>
+    <ul id="task-list"></ul>
+    <button id="remove">Remove Completed</button>
+    <button class="remove-all">Remove All</button>
+    <script>
+      
+        (function(){
+            $('#add-button').click(function(){
+                const taskInput= $('#task-input').val();
+                if(taskInput){
+                    $('#task-list').append(`<li>${taskInput}</li>`);
+                    $('#task-input').val('');
+                }
+            });
+
+           
+            $('#task-list').on('click','li',function(){
+                $(this).toggleClass('completed');
+                console.log(this);
+            })
+            $('#remove').on('click',function(){
+                $('#task-list li.completed').remove();
+                
+            })
+            $('.remove-all').on('click',function(){
+                
+                $('#task-list li').remove();
+               
+            })
+        })()
+    </script>
+</body>
+</html>
